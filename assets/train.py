@@ -74,7 +74,7 @@ parser = argparse.ArgumentParser(description='PyTorch ImageNet Training')
 # Dataset / Model parameters
 parser.add_argument('data', metavar='DIR',
                     help='path to dataset')
-parser.add_argument('--model', default='resnet101', type=str, metavar='MODEL',
+parser.add_argument('--model', default='vihg_ti_224_gelu', type=str, metavar='MODEL',
                     help='Name of model to train (default: "countception"')
 parser.add_argument('--pretrained', action='store_true', default=False,
                     help='Start with pretrained version of specified network (if avail)')
@@ -98,7 +98,7 @@ parser.add_argument('--std', type=float, nargs='+', default=None, metavar='STD',
                     help='Override std deviation of of dataset')
 parser.add_argument('--interpolation', default='', type=str, metavar='NAME',
                     help='Image resize interpolation type (overrides model)')
-parser.add_argument('-b', '--batch-size', type=int, default=32, metavar='N',
+parser.add_argument('-b', '--batch-size', type=int, default=16, metavar='N',
                     help='input batch size for training (default: 32)')
 parser.add_argument('-vb', '--validation-batch-size-multiplier', type=int, default=1, metavar='N',
                     help='ratio of validation batch size to training batch size (default: 1)')

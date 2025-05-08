@@ -3,7 +3,7 @@
 import numpy as np
 import torch
 from torch import nn
-from .torch_nn import BasicConv, batched_index_select, act_layer
+from .torch_nn import BasicConv, batched_index_select
 from .torch_edge import DenseDilatedKnnGraph, construct_hyperedges
 from .pos_embed import get_2d_relative_pos_embed
 import torch.nn.functional as F
