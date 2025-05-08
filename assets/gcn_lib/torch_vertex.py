@@ -112,14 +112,14 @@ class HypergraphConv2d(nn.Module):
 
         # Step 1: Aggregate node features to get hyperedge features
         node_features_for_hyperedges = batched_index_select(x, hyperedge_matrix)
-        aggregated_hyperedge_features, _ = node_features_for_hyperedges.sum(dim=-1, keepdim=True)
-        aggregated_hyperedge_features = self.nn_node_to_hyperedge(aggregated_hyperedge_features.squeeze(-1)) # (1, 128, 50)
+        aggregated_hyperedge_features = node_features_for_hyperedges.sum(dim=-1, keepdim=True)
+        aggregated_hyperedge_features = self.nn_node_to_hyperedge(aggregated_hyperedge_features) # (1, 128, 50)
         # Adding the hyperedge center features to the aggregated hyperedge features
-        aggregated_hyperedge_features += (1 + self.eps) * centers[:, :, :-1, :]
+        aggregated_hyperedge_features += (1 + self.eps) * centers[:, :, :-1].unsqueeze(-1)
         
         # Step 2: Aggregate hyperedge features to update node features
         hyperedge_features_for_nodes = batched_index_select(aggregated_hyperedge_features.unsqueeze(-1), point_hyperedge_index)
-        aggregated_node_features_from_hyperedges = self.nn_hyperedge_to_node(hyperedge_features_for_nodes.sum(dim=-1, keepdim=True).squeeze(-1))
+        aggregated_node_features_from_hyperedges = self.nn_hyperedge_to_node(hyperedge_features_for_nodes.sum(dim=-1, keepdim=True))
 
         # Update original node features
         out = aggregated_node_features_from_hyperedges
@@ -146,9 +146,9 @@ class GraphConv2d(nn.Module):
         else:
             raise NotImplementedError('conv:{} is not supported'.format(conv))
 
-    def forward(self, x, edge_index, y=None, hyperedge_matrix=None, point_hyperedge_index=None, centers=None):
+    def forward(self, x, edge_index=None, y=None, hyperedge_matrix=None, point_hyperedge_index=None, centers=None):
         if isinstance(self.gconv, HypergraphConv2d):
-            return self.gconv(x, edge_index, y, hyperedge_matrix=hyperedge_matrix, point_hyperedge_index=point_hyperedge_index, centers=centers)
+            return self.gconv(x, hyperedge_matrix=hyperedge_matrix, point_hyperedge_index=point_hyperedge_index, centers=centers)
         else:
             return self.gconv(x, edge_index, y)
 
@@ -212,7 +212,7 @@ class Grapher(nn.Module):
         self.drop_path = DropPath(drop_path) if drop_path > 0. else nn.Identity()
         self.relative_pos = None
         if relative_pos:
-            print('using relative_pos')
+            # print('using relative_pos')
             relative_pos_tensor = torch.from_numpy(np.float32(get_2d_relative_pos_embed(in_channels,
                 int(n**0.5)))).unsqueeze(0).unsqueeze(1)
             relative_pos_tensor = F.interpolate(

@@ -186,7 +186,7 @@ def vihg_ti_224_gelu(pretrained=False, **kwargs):
     class OptInit:
         def __init__(self, num_classes=1000, drop_path_rate=0.0, drop_rate=0.0, num_clusters=25, **kwargs):
             self.k = num_clusters # hyperedges num (default:25)
-            self.conv = 'edge' # graph conv layer {edge, mr}
+            self.conv = 'hypergraph' # graph conv layer {edge, mr}
             self.act = 'gelu' # activation layer {relu, prelu, leakyrelu, gelu, hswish}
             self.norm = 'batch' # batch or instance normalization {batch, instance}
             self.bias = True # bias of conv layer True or False
@@ -234,7 +234,7 @@ def vihg_s_224_gelu(pretrained=False, **kwargs):
     class OptInit:
         def __init__(self, num_classes=1000, drop_path_rate=0.0, drop_rate=0.0, num_clusters=25, **kwargs):
             self.k = num_clusters # hyperedges num (default:25)
-            self.conv = 'edge' # graph conv layer {edge, mr}
+            self.conv = 'hypergraph' # graph conv layer {edge, mr}
             self.act = 'gelu' # activation layer {relu, prelu, leakyrelu, gelu, hswish}
             self.norm = 'batch' # batch or instance normalization {batch, instance}
             self.bias = True # bias of conv layer True or False
@@ -282,7 +282,7 @@ def vihg_b_224_gelu(pretrained=False, **kwargs):
     class OptInit:
         def __init__(self, num_classes=1000, drop_path_rate=0.0, drop_rate=0.0, num_clusters=25, **kwargs):
             self.k = num_clusters # hyperedges num (default:25)
-            self.conv = 'edge' # graph conv layer {edge, mr}
+            self.conv = 'hypergraph' # graph conv layer {edge, mr}
             self.act = 'gelu' # activation layer {relu, prelu, leakyrelu, gelu, hswish}
             self.norm = 'batch' # batch or instance normalization {batch, instance}
             self.bias = True # bias of conv layer True or False

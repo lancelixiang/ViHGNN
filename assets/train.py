@@ -74,7 +74,7 @@ parser = argparse.ArgumentParser(description='PyTorch ImageNet Training')
 # Dataset / Model parameters
 parser.add_argument('data', metavar='DIR',
                     help='path to dataset')
-parser.add_argument('--model', default='vihg_ti_224_gelu', type=str, metavar='MODEL',
+parser.add_argument('--model', default='pvihg_ti_224_gelu', type=str, metavar='MODEL',
                     help='Name of model to train (default: "countception"')
 parser.add_argument('--pretrained', action='store_true', default=False,
                     help='Start with pretrained version of specified network (if avail)')
@@ -348,7 +348,7 @@ def main():
         model.load_state_dict(state_dict, strict=False)
         print('Pretrain weights loaded.')
     ################### flops #################
-    print(model)
+    # print(model)
     if hasattr(model, 'default_cfg'):
         default_cfg = model.default_cfg
         input_size = [1] + list(default_cfg['input_size'])

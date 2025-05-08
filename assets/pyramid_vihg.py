@@ -206,7 +206,7 @@ def pvihg_ti_224_gelu(pretrained=False, **kwargs):
     class OptInit:
         def __init__(self, num_classes=1000, drop_path_rate=0.0, **kwargs):
             self.k = 25  # hyperedge num (default:25)
-            self.conv = 'edge'  # graph conv layer {edge, mr, hypergraph}
+            self.conv = 'hypergraph'  # graph conv layer {edge, mr, hypergraph}
             self.act = 'gelu' # activation layer {relu, prelu, leakyrelu, gelu, hswish}
             self.norm = 'batch' # batch or instance normalization {batch, instance}
             self.bias = True  # bias of conv layer True or False
@@ -255,7 +255,7 @@ def pvihg_s_224_gelu(pretrained=False, **kwargs):
     class OptInit:
         def __init__(self, num_classes=1000, drop_path_rate=0.0, **kwargs):
             self.k = 25  # hyperedge num (default:25)
-            self.conv = 'edge'  # graph conv layer {edge, mr, hypergraph}
+            self.conv = 'hypergraph'  # graph conv layer {edge, mr, hypergraph}
             self.act = 'gelu' # activation layer {relu, prelu, leakyrelu, gelu, hswish}
             self.norm = 'batch' # batch or instance normalization {batch, instance}
             self.bias = True  # bias of conv layer True or False
@@ -304,7 +304,7 @@ def pvihg_m_224_gelu(pretrained=False, **kwargs):
     class OptInit:
         def __init__(self, num_classes=1000, drop_path_rate=0.0, **kwargs):
             self.k = 25  # hyperedge num (default:25)
-            self.conv = 'edge'  # graph conv layer {edge, mr, hypergraph}
+            self.conv = 'hypergraph'  # graph conv layer {edge, mr, hypergraph}
             self.act = 'gelu' # activation layer {relu, prelu, leakyrelu, gelu, hswish}
             self.norm = 'batch' # batch or instance normalization {batch, instance}
             self.bias = True # bias of conv layer True or False
@@ -354,7 +354,7 @@ def pvihg_b_224_gelu(pretrained=False, **kwargs):
     class OptInit:
         def __init__(self, num_classes=1000, drop_path_rate=0.0, **kwargs):
             self.k = 25  # hyperedge num (default:25)
-            self.conv = 'edge'  # graph conv layer {edge, mr, hypergraph}
+            self.conv = 'hypergraph'  # graph conv layer {edge, mr, hypergraph}
             self.act = 'gelu' # activation layer {relu, prelu, leakyrelu, gelu, hswish}
             self.norm = 'batch' # batch or instance normalization {batch, instance}
             self.bias = True # bias of conv layer True or False
